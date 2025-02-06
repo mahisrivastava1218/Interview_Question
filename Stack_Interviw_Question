@@ -1,0 +1,44 @@
+
+class Minstack{
+  constructor(){
+      this.stack = [];
+      this.minStack=[];
+  }
+  push(x){
+  this.stack.push(x);
+  if(this.minStack.length===0 || x<=this.minStack[this.minStack.length-1]){
+      this.minStack.push(x);
+  }
+  }
+   pop(){
+      if(this.stack.length === 0) return;
+      let removedElement = this.stack.pop();
+      if(removedElement===this.minStack[this.minStack.length-1]){
+         this.minStack.pop();
+      }
+  }
+   findMin() {
+  if(this.minStack.length === 0)return -1;
+  return this.minStack[this.minStack.length-1];
+ }
+}
+let minStack=new Minstack();
+function push(x) {
+  minStack.push(x);
+}
+
+/**
+* @returns {void}
+*/
+
+function pop() {
+      minStack.pop();
+}
+
+/**
+* @return {number}
+*/
+
+function findMin() {
+  return minStack.findMin();
+}
