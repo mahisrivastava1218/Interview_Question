@@ -1,0 +1,69 @@
+class ListNode{
+	constructor(val){
+		this.val = val;
+		this.next = null;
+	}
+*/
+
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+function sortList(head) {
+//       let arr=[];
+//       while(head!==null){
+//             arr.push(head.val);
+//             head=head.next;
+//       }
+//       arr.sort((a,b)=>a-b);
+//       let dummyNode=new ListNode(0);
+//       let temp=dummyNode;
+//       for(let i=0;i<arr.length;i++){
+//             temp.next=new ListNode(arr[i]);
+//             temp=temp.next;
+//       }
+//   return dummyNode.next;.
+
+//optimize by merge sort
+
+   if(!head || !head.next) return head;
+   let mid= getMiddle(head);
+//    console.log(mid);
+   let rightHead= mid.next;
+//    console.log(rightHead);
+// console.log(leftHead);
+    mid.next = null;
+   let leftSorted = sortList(head);
+   let rightSorted = sortList(rightHead);
+
+   return mergeSort(leftSorted,rightSorted); 
+}
+//TC:O(n+nlogn+n)=>(nlogn) SC:O(n) (BRUITE FORCE APPROACH)
+//merge sort TC:O(nlogn) SC:O(logn);
+function getMiddle(head){
+      let slow=head;
+      let fast=head;
+      while(fast.next && fast.next.next){
+        slow=slow.next;
+        fast=fast.next.next;
+      }
+      return slow;
+}
+function mergeSort(left,right){
+      let dummyNode = new ListNode(-1);
+      let temp=dummyNode;
+     while(left && right){
+           if(left.val<right.val){
+                 temp.next=left;
+                 left=left.next;
+           }else{
+                 temp.next=right;
+                 right=right.next;
+           }
+           temp=temp.next;
+     }
+     temp.next=left || right;
+     return dummyNode.next;
+
+}; 
+module.exports = sortList;
