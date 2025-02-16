@@ -1,0 +1,42 @@
+
+function deleteKthToLast(head, k) {
+    // let cnt=0;
+    // let curr=head;
+    // while(curr!==null){
+    //       cnt++;
+    //       curr=curr.next;
+    // }
+    // let res=cnt-k;
+    // if(res === 0){
+    //       return head.next;
+    // }
+    // let temp=head;
+    // for(let i=0;i<res-1;i++){
+    //       temp = temp.next;
+    // }
+    // if(temp.next!==null){
+    //       temp.next=temp.next.next;
+    // }
+    // return head;
+    // TC:O(2*L)//length of linked list
+    // SC:O(1)
+    //optimize by two pointer fast and slow
+    let fast=head;
+    let slow=head;
+    for(let i=0;i<k;i++){
+          fast=fast.next;
+    }
+    // console.log(slow.val);
+    //fast will move slow =(L-K) next pointer of slow should be deleted
+    if(!fast) return head.next;
+    while(fast.next!==null){
+          fast=fast.next;
+          slow=slow.next;
+    }
+    //  console.log(slow.val);
+    // let delNode = slow.next;
+    slow.next = slow.next.next;
+    return head;
+    //tc-O(n)''going L length
+    //sc-O(1) 
+}
