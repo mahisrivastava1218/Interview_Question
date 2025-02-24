@@ -1,0 +1,70 @@
+Ques.2467. Most Profitable Path in a Tree
+
+
+var mostProfitablePath = function(edges, bob, amount) {
+ const n = amount.length;
+    const graph = Array.from({ length: n }, () => []);
+
+    // Build the adjacency list (tree)
+    for (let [u, v] of edges) {
+        graph[u].push(v);
+        graph[v].push(u);
+    }
+
+    // Step 1: Find Bob's path from bob to 0
+    let bobPath = new Array(n).fill(-1);
+    
+    function findBobPath(node, parent) {
+        if (node === 0) {
+            bobPath[node] = 0;
+            return true;
+        }
+        for (let neighbor of graph[node]) {
+            if (neighbor !== parent && findBobPath(neighbor, node)) {
+                bobPath[node] = bobPath[neighbor] + 1;
+                return true;
+            }
+        }
+        return false;
+    }
+    findBobPath(bob, -1);
+
+    // Step 2: Modify amount[] based on Bob's movement
+    let bobSteps = 0;
+    let current = bob;
+
+    while (current !== -1) {
+        if (bobPath[current] === bobSteps) {
+            amount[current] /= 2; // Alice and Bob arrive at the same time
+        } else if (bobPath[current] < bobSteps) {
+            break; // Bob has already passed this point
+        } else {
+            amount[current] = 0; // Bob takes everything
+        }
+        bobSteps++;
+        current = graph[current].find(neigh => bobPath[neigh] === bobPath[current] - 1);
+    }
+
+    // Step 3: Find Alice's most profitable path using DFS
+    let maxProfit = -Infinity;
+
+    function dfs(node, parent, currentProfit) {
+        currentProfit += amount[node];
+        let isLeaf = true;
+
+        for (let neighbor of graph[node]) {
+            if (neighbor !== parent) {
+                isLeaf = false;
+                dfs(neighbor, node, currentProfit);
+            }
+        }
+
+        if (isLeaf) {
+            maxProfit = Math.max(maxProfit, currentProfit);
+        }
+    }
+
+    dfs(0, -1, 0); // Start DFS from root
+
+    return maxProfit;
+};
