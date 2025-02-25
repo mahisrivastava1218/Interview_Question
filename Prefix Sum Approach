@@ -1,3 +1,5 @@
+//Question -1524. Number of Sub-arrays With Odd Sum
+
 var numOfSubarrays = function(arr) {
     let even=1;
     let odd=0;
