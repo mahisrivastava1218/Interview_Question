@@ -1,0 +1,64 @@
+//Bruite force
+
+
+class Solution {
+    findNse(start,arr){
+        for(let i=start+1;i<arr.length;i++){
+            if(arr[i]<arr[start]){
+                return i;
+            }
+        }
+        return arr.length;
+    }
+    findPse(arr,end){
+        for(let i=end-1;i>=0;i--){
+            if(arr[i]<arr[end]){
+                return i;
+            }
+        }
+        return -1;
+    }
+    getMaxArea(arr) {
+        if(arr.length === 1) return arr;
+        let max= -Infinity;
+        for(let i=0;i<arr.length;i++){
+             let nse = this.findNse(i,arr);
+             let pse = this.findPse(arr,i);
+             max=Math.max(max,arr[i]*(nse-pse-1));
+        }
+        return max;
+    }
+}
+//tc:O(n^2) sc:O(1)
+//optimize using stack
+class Solution {
+    getMaxArea(arr) {
+        let n=arr.length;
+        if(n === 1) return arr;
+        let left = new Array(n);
+        let stack=[];
+        for(let i=0;i<n;i++){
+            while(stack.length>0 && arr[stack[stack.length-1]]>=arr[i]){
+                stack.pop();
+            }
+            left[i] = (stack.length === 0) ? -1 : stack[stack.length-1];
+            stack.push(i);
+        }
+        stack=[];
+        let right=[];
+        for(let i=n-1;i>=0;i--){
+            while(stack.length>0 && arr[stack[stack.length-1]]>=arr[i]){
+                stack.pop();
+            }
+            right[i]=(stack.length===0) ? n : stack[stack.length-1];
+            stack.push(i);
+        }
+        let maxarea = -Infinity;
+        for(let i=0;i<n;i++){
+            let width =right[i]-left[i]-1;
+            maxarea = Math.max(maxarea,arr[i]*width);
+        }
+        return maxarea;
+    }
+}
+//tc:O(n) sc:O(n)
