@@ -1,0 +1,17 @@
+//Question - 1749. Maximum Absolute Sum of Any Subarray
+//time complexity-O(n) sc:O(1)
+//approach-kadane's algorithm(used for finding max ,min subarray)
+var maxAbsoluteSum = function(nums) {
+    let maxcurrsum=0,maxsum=0;
+    let mincurrsum=0,minsum=0;
+
+  for(let num of nums){
+    maxcurrsum = Math.max(num,maxcurrsum+num);
+    maxsum = Math.max(maxsum,maxcurrsum);
+    
+    mincurrsum = Math.min(num,mincurrsum+num);
+    minsum = Math.min(minsum,mincurrsum);
+    //  console.log(maxcurrsum,maxsum,mincurrsum,minsum);
+  }
+  return Math.max(maxsum,Math.abs(minsum));
+};
