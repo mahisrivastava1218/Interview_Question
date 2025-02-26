@@ -1,3 +1,4 @@
+Ques : Maximum of minimum for every window size
 class Solution {
     maxOfMins(arr) {
         let n=arr.length;
