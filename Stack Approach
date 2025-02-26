@@ -17,4 +17,38 @@ class Solution {
         return res;
     }
 }
-time complexity:O(n) space complexity:O(n)
+time complexity:O(n^3) space complexity:O(n)
+
+//optimize sliding window ,stack
+//tc:O(n) SC:O(n)
+class Solution {
+    maxOfMins(arr) {
+        let s=[];
+        let n=arr.length;
+        let len = new Array(n).fill(0);
+        for(let i=0;i<n;i++){
+            while (s.length > 0 && arr[s[s.length - 1]] >= arr[i]) {
+            let top = s.pop();
+            let windowSize = s.length === 0 ? i : i - s[s.length - 1] - 1;
+            len[top] = windowSize;
+         }
+         s.push(i);
+        }
+        while(s.length>0){
+            let top = s.pop();
+            let windowSize = s.length === 0 ? n : n - s[s.length - 1] - 1;
+            len[top] = windowSize;
+        }
+        let res = new Array(n).fill(0);
+        for(let i=0;i<n;i++){
+            let windowSize = len[i]-1;
+            // console.log(res[windowSize);
+            res[windowSize] = Math.max(res[windowSize],arr[i]);
+        }
+        for(let i=n-2;i>=0;i--){
+            res[i]= Math.max(res[i],res[i+1]);
+        }
+        return res;
+        
+    }
+}
