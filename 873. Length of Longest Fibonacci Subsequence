@@ -1,0 +1,29 @@
+var findingLength = function(j,k,arr,map){
+    let target = arr[k]-arr[j];
+    if(map.has(target) && map.get(target)<j){
+        let i =map.get(target);
+        return findingLength(i,j,arr,map) + 1;
+    }
+    return 2;
+ }
+var lenLongestFibSubseq = function(arr) {
+    let n=arr.length;
+    if(n<3) return 2;
+    const map=new Map();
+    for(let i=0;i<n;i++){
+        map.set(arr[i],i);
+    }
+    let length=0;
+    let maxLength=0;
+        for(let j=1;j<n;j++){
+            for(let k=j+1;k<n;k++){
+                length = findingLength(j,k,arr,map);
+                if(length>=3){
+                    maxLength = Math.max(maxLength,length);
+                }
+            }
+        }
+    
+    return maxLength;
+};
+TC:O(n^3) SC:O(n)
