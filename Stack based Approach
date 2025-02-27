@@ -1,0 +1,54 @@
+//Question - Two Stacks in an Array
+
+class TwoStacks {
+    // constructor for twoStacks()
+
+    constructor() {
+        this.arr = new Array(100).fill(0); // Array to store stack elements
+        this.size = 100; // Maximum size of the array
+        this.top1 = -1; // Top of Stack1
+        this.top2 = 100; // Top of Stack2 (starts from the end)
+    }
+
+    // Function to push an integer into stack1.
+    push1(x) {
+        if (this.top1 < this.top2 - 1) { // Ensure space is available
+            this.top1++;
+            this.arr[this.top1] = x;
+        } else {
+            console.log("Stack1 Overflow");
+        }
+    }
+
+    // Function to push an integer into stack2.
+    push2(x) {
+        if (this.top2 > this.top1 + 1) { // Ensure space is available
+            this.top2--;
+            this.arr[this.top2] = x;
+        } else {
+            console.log("Stack2 Overflow");
+        }
+    }
+
+    // Function to remove an element from top of stack1.
+    pop1() {
+        if (this.top1 >= 0) { // Ensure stack1 is not empty
+            let poppedVal = this.arr[this.top1];
+            this.top1--;
+            return poppedVal;
+        }
+        return -1; // Return -1 if stack1 is empty
+    }
+
+    // Function to remove an element from top of stack2.
+    pop2() {
+        if (this.top2 < this.size) { // Ensure stack2 is not empty
+            let poppedVal = this.arr[this.top2];
+            this.top2++;
+            return poppedVal;
+        }
+        return -1; // Return -1 if stack2 is empty
+    }
+
+}
+//tc:O(1) sc:O(1)
