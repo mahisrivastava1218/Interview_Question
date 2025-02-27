@@ -1,0 +1,21 @@
+//Question - Get Min from Stack
+
+class Solution {
+    constructor() {
+        this.stack = [];
+    }
+    push(x) {
+        let newMin = this.stack.length === 0 ? x : 
+        Math.min(x, this.stack[this.stack.length-1][1]);
+        this.stack.push([x,newMin]);
+    } pop() {
+        if(this.stack.length>0){
+        this.stack.pop();
+        }
+    }peek() {
+        return this.stack.length === 0 ? -1 : this.stack[this.stack.length-1][0];
+    } getMin() {
+        return this.stack.length === 0 ? -1 : Math.min(this.stack[this.stack.length-1][1])
+    }
+}
+//tc:O(1) sc:O(n)
