@@ -1,0 +1,29 @@
+//1092. Shortest Common Supersequence 
+
+var shortestCommonSupersequence = function(str1, str2) {
+      let memo = new Map();  // Memoization table
+
+    function scs(i, j) {
+        if (i === str1.length) return str2.slice(j);
+        if (j === str2.length) return str1.slice(i);
+        
+        let key = `${i},${j}`;  // Unique key for memoization
+        if (memo.has(key)) return memo.get(key);
+        console.log(memo);
+        if (str1[i] === str2[j]) {
+            let res = str1[i] + scs(i + 1, j + 1);
+            memo.set(key, res);
+            return res;
+        }
+
+        let option1 = str1[i] + scs(i + 1, j);
+        let option2 = str2[j] + scs(i, j + 1);
+        let result = option1.length < option2.length ? option1 : option2;
+        
+        memo.set(key, result);
+        return result;
+    }
+
+    return scs(0, 0);
+};
+//tc:O(m*n) SC:O(m*n)
