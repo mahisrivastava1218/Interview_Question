@@ -1,3 +1,12 @@
+Sample Input 1
+aaba ab
+
+Sample Output 1
+2
+
+1 2
+
+//find all anagram in a string[patter introduction]
 function findAllAnagramsInAString(s, p) {
   let mp1= new Map();  //map for p string
   let mp2= new Map();
