@@ -1,0 +1,36 @@
+function findAllAnagramsInAString(s, p) {
+  let mp1= new Map();  //map for p string
+  let mp2= new Map();
+  for(let i=0;i<256;i++){
+    mp1.set(String.fromCharCode(i),0);
+    mp2.set(String.fromCharCode(i),0);
+  }
+  for(let i=0;i<p.length;i++){
+    mp1.set(p[i],mp1.get(p[i])+1);
+  }
+  let left=0;
+  let right=p.length-1;
+  let ans=[];
+  for(let i=left;i<=right;i++){
+    mp2.set(s[i],mp2.get(s[i])+1);
+  }
+  while(right<s.length){
+    let isAnagram = true;
+    for(let i=0;i<256;i++){
+        if(mp1.get(String.fromCharCode(i)) !== mp2.get(String.fromCharCode(i))){
+          isAnagram = false;
+          break;
+        }
+    }
+    if(isAnagram === true){
+      ans.push(left);
+    }
+    mp2.set(s[left],mp2.get(s[left])-1);
+    left++;
+    right++;
+    if(right<s.length){
+      mp2.set(s[right],mp2.get(s[right])+1);
+    }
+  }
+  return ans;
+}
