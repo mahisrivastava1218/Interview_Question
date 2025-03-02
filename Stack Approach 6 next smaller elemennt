@@ -1,0 +1,46 @@
+function nextSmallerElement(n, arr) {
+    // let result = [];
+    // for(let i=0;i<n;i++){
+    //     let res=-1;
+    //     for(let j=i+1;j<n;j++){
+    //         if(arr[j]<arr[i]){
+    //             res = arr[j];
+    //             result.push(res);
+    //             break;
+    //         }
+    //     }
+    //     if(res===-1)result.push(res);
+    // }
+    // return result;
+//tc:O(n^2) sc: O(n)
+    let stack=[];
+    let res = new Array(n).fill(-1);
+    for(let i=n-1;i>=0;i--){
+       while(stack.length>0 && arr[i]<=stack[stack.length-1]){
+           stack.pop();
+       }
+       if(stack.length > 0){
+          res[i] = stack[stack.length-1];
+       }
+       stack.push(arr[i]);
+    }
+    return res;
+//tc:O(n)
+//sc:O(n)
+//same approach method 2 stack
+  if(arr.length ===1) return [-1];
+    let stack=[];
+    let res = new Array(n).fill(-1);
+    for(let i=n-1;i>=0;i--){
+       while(stack.length>0 && arr[i]<=arr[stack[stack.length-1]]){
+           stack.pop();
+       }
+       if(stack.length > 0){
+          res[i] = arr[stack[stack.length-1]];
+       }
+       stack.push(i);
+    }
+    return res;
+//tc:O(n)
+//sc:O(n)
+}
