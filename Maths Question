@@ -1,0 +1,14 @@
+2579. Count Total Number of Colored Cells
+var coloredCells = function(n) {
+    let t=1;
+    let cells = 1;
+    while(t<=n){
+        cells += (4*(t-1));
+        t++;
+    }
+  return cells;
+};
+//tc:O(n) SC:O(1)
+//optimize maths
+return 1+(2*n)*(n-1);
+//tc:O(1)
