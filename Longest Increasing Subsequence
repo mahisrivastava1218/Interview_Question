@@ -1,0 +1,37 @@
+class Solution {
+    lis(arr) {
+    const n = arr.length;
+    let ans = [];
+    ans.push(arr[0]);
+    for(let i=1;i<n;i++){
+       if(arr[i]>ans[ans.length-1]){
+           ans.push(arr[i]);
+       }else{
+           //Binary Search
+           const index = ans.findIndex((index)=>index>=arr[i]);
+           ans[index]=arr[i];
+       }
+    }
+    return ans.length;
+    }
+}
+//above approach O(n*n) sc:O(n) findIndex method goes O(n) searching index
+//optimize by binary search sorted ans array 
+//tc:O(n*logn) SC:O(n)
+class Solution {
+    lis(arr) {
+    const n = arr.length;
+    let ans = [];
+    ans.push(arr[0]);
+    for(let i=1;i<n;i++){
+       if(arr[i]>ans[ans.length-1]){
+           ans.push(arr[i]);
+       }else{
+           //Binary Search
+           const index = ans.findIndex((index)=>index>=arr[i]);
+           ans[index]=arr[i];
+       }
+    }
+    return ans.length;
+    }
+}
