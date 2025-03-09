@@ -1,0 +1,19 @@
+// The global variable
+const bookList = ["A Brief History of Time", "The Works of Archimedes", "The Theory of Relativity", "Opticks"];
+
+function add(arr, bookName) {
+  //insted of modification in original arr make new arr
+  return [...arr,bookName];
+}
+
+function remove(arr, bookName) {
+  //it works when bookName not in arr //always return arr;
+   return arr.filter(book => book !== bookName); 
+}
+
+function manageBooks(bookAdded, bookRemoved) {
+  // You need to implement this function.
+   let newarr = remove(bookList, bookRemoved); 
+   newarr = add(newarr, bookAdded);
+    return newarr;
+}
