@@ -1,0 +1,4 @@
+function sentensify(str) {
+  // You only need to implement this function.
+return arr = str.split(/[,.-]/).join(" ");
+}
