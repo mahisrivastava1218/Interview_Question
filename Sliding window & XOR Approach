@@ -1,4 +1,6 @@
- longestNiceSubarray = function(nums) {
+Q.2401. Longest Nice Subarray
+
+longestNiceSubarray = function(nums) {
     let left = 0;
     let bitmask = 0;
     let maxLength = 0;
