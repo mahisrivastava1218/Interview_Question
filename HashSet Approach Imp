@@ -1,0 +1,28 @@
+2115. Find All Possible Recipes from Given Supplies
+
+var findAllRecipes = function(recipes, ingredients, supplies) {
+    let res=[];
+    let supplySet = new Set(supplies);
+    let remainingSet = new Set(recipes);
+    let changed =true;
+    while(changed){
+    changed = false;
+    for(let i=0;i<recipes.length;i++){
+        if (!remainingSet.has(recipes[i])) continue;  // Already added
+        let canMake = true;
+         for(let ing of ingredients[i]){
+             if(!supplySet.has(ing)){
+               canMake = false;
+               break;
+             }
+         }
+         if(canMake){
+            res.push(recipes[i]);
+            supplySet.add(recipes[i]);
+            remainingSet.delete(recipes[i]);
+            changed = true;
+         }
+     }
+    }
+     return res;
+};
