@@ -1,0 +1,23 @@
+//Ques-> 2033. Minimum Operations to Make a Uni-Value Grid
+let mod = grid[0][0] % x;
+    let nums = [];
+    
+    for (let row of grid) {
+        for (let v of row) {
+            if (v % x !== mod) {
+                return -1;
+            }
+            nums.push(v);
+        }
+    }
+    
+    nums.sort((a, b) => a - b);
+    let mid = nums[Math.floor(nums.length / 2)];
+    let ans = 0;
+    
+    for (let v of nums) {
+        ans += Math.abs(v - mid) / x;
+    }
+    
+    return ans;
+}
