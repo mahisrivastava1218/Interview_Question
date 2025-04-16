@@ -1,0 +1,20 @@
+var countGood = function(nums, k) {
+    let n=nums.length;
+    let res=0;
+    const map =new Map();
+   let i=0,j=0;
+   let pair=0;
+   while(j<n){
+    let freq=map.get(nums[j])||0;
+    pair += freq;
+    map.set(nums[j],freq+1);
+    while(pair>=k){
+        res += n-j; 
+        map.set(nums[i],(map.get(nums[i])||0)-1);
+        pair -= map.get(nums[i])||0;
+        i++;
+    }
+    j++;
+   }
+   return res;
+};
