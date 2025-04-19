@@ -1,0 +1,44 @@
+//Rotting Oranges
+function rottingOranges(grid) {
+  const queue = [];
+  let n=grid.length;
+  let m=grid[0].length;
+  let freshOrange=0;
+  for(let i=0;i<n;i++){
+      for(let j=0;j<m;j++){
+          if(grid[i][j]===2){
+          queue.push([i,j]);
+          }else  if(grid[i][j]===1){
+            freshOrange++;
+          }
+      }
+  }
+   if(freshOrange===0){
+       return 0;
+   }
+  let dir=[[-1,0],[1,0],[0,-1],[0,1]];
+   let minutes=0;
+  while(queue.length>0){
+      const size = queue.length;
+      let newRotten=false;
+      for(let i=0;i<size;i++){
+          const [x,y]=queue.shift();
+        //   console.log(x,y);
+          for(const [dx,dy] of dir){
+              const nx = x+dx;
+              const ny=y+dy;
+              if(nx>=0 && ny>=0 && nx<n && ny<m && grid[nx][ny]===1){
+                  grid[nx][ny]=2;
+                  queue.push([nx,ny]);
+                  freshOrange--;
+                  newRotten = true;
+              }
+          }
+      }
+    //   console.log(newRotten);
+            if(newRotten) minutes++;
+  }
+  return freshOrange===0 ? minutes : -1;
+}
+//tc:O(n*m)
+
