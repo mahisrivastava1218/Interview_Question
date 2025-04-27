@@ -1,0 +1,35 @@
+//Diameter
+function diameterOfTree(nodes, edges, edgeslist){
+    let x = 0;
+    let maxCount = 0;
+
+    function dfsUtil(node, count, adj, visited) {
+        visited[node] = true;
+        if (count > maxCount) {
+            maxCount = count;
+            x = node;
+        }
+        for (let nbr of adj[node]) {
+            if (!visited[nbr]) {
+                dfsUtil(nbr, count + 1, adj, visited);
+            }
+        }
+    }
+
+    function dfs(node, n, adj) {
+        let visited = new Array(n + 1).fill(false);
+        maxCount = 0;
+        dfsUtil(node, 0, adj, visited);
+     }
+
+    let adj = Array.from({ length: nodes + 1 }, () => []);
+    for (let [u, v] of edgeslist) {
+        adj[u].push(v);
+        adj[v].push(u);
+    }
+
+    dfs(1, nodes, adj);
+    let farthestNode = x;
+    dfs(farthestNode, nodes, adj);
+    return maxCount;
+}
