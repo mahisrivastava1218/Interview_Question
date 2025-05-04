@@ -1,0 +1,16 @@
+1128. Number of Equivalent Domino Pairs
+
+var numEquivDominoPairs = function(dominoes) {
+   let map ={};
+   let count=0;
+   for(let [a,b] of dominoes){
+      let key = a < b ? `${a}${b}` : `${b}${a}`;
+      if(map[key]){
+        count += map[key];
+        map[key]++;
+      }else{
+        map[key]=1;
+      }
+   }
+   return count;
+};
