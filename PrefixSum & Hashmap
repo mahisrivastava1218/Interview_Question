@@ -1,4 +1,3 @@
-//Longest Subarray Having sum equal to given sum
 function longestSubarrayHavingSumK(N,K,nums) {
     // let maxSub=0;
     // let sub=0;
@@ -17,7 +16,24 @@ function longestSubarrayHavingSumK(N,K,nums) {
     // return maxSub;
 
   //prefixsum and hashmap
-   let map=new Map();
+//    let map=new Map();
+//    let sum=0;
+//    let maxLen=0;
+//    for(let i=0;i<N;i++){
+//        sum += nums[i];
+//        if(sum===K){
+//            maxLen=i+1;
+//        }
+//        if(map.has(sum-K)){
+//            maxLen=Math.max(maxLen,i-map.get(sum-K));
+//        }
+//        if(!map.has(sum)){
+//            map.set(sum,i);
+//        }
+//    }
+//    return maxLen;
+ let map=new Map();
+ map.set(0,-1)
    let sum=0;
    let maxLen=0;
    for(let i=0;i<N;i++){
