@@ -1,0 +1,36 @@
+function moveZeroes(nums) {
+//     let res=[];
+//    for(let i=0;i<nums.length;i++){
+//         if(nums[i]===0){
+//             res.push(nums[i]);
+//         }
+//     }
+//     nums=nums.filter(num=>num!==0);
+//     return nums.concat(res);
+
+// let numsWithoutZero = nums.filter(num=>num!==0);
+// let numsWithZero = nums.length-numsWithoutZero.length;
+// for(let i=0;i<numsWithZero;i++){
+//     numsWithoutZero.push(0);
+// }
+// return numsWithoutZero;
+//1 1 2 3 0 4 0 //1 1 2 3 4 0 0
+//ci=0,i=0, [nums[0],nums[0]]=nums[0],nums[0] [1,1]
+//ci=1,i=1 [nums[1],nums[1]] [1,1]
+//ci=2,i=2 [2,2]
+//ci=3,i=3 [3,3]
+//ci=4,i=4 [0,0] 
+//ci=4,i=5 [nums[5],nums[4]]=[nums[4],nums[5]] swap [0,4]
+//ci=5,i=6 
+let ci=0;
+for(let i=0;i<nums.length;i++){
+    if(nums[i]!=0){
+        [nums[i],nums[ci]]=[nums[ci],nums[i]];
+        ci++;
+    }
+}
+return nums;
+
+//tc-O(2n)->O(n)
+//sc-O(1)
+}
