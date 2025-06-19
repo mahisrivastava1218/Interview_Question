@@ -1,0 +1,38 @@
+function diagonalSumII(mat) {
+    let sum=0;
+    // let sum1 = firstDiagonal(sum,0,0,mat);
+    // let sum2 = secondDiagonal(sum,0,mat.length-1,mat);
+    // return sum1+sum2;
+    ///tc-O(2n)-O(n) sc-O(1)
+
+   //0,2 mat[i][n-1-i]
+   let n=mat.length;
+    for(let i=0;i<mat.length;i++){
+        sum += mat[i][i]; //primary diagonal
+        if(i!==n-1-i){
+        sum += mat[i][n-1-i]; //secondary
+        }
+    }
+    return sum;
+    //tc->O(n) sc-O(1)
+}
+function firstDiagonal(sum,i,j,mat){
+     while(i<mat.length && j<mat.length){
+         sum += mat[i][j];
+         i++;
+         j++;
+     }
+    //  console.log(sum);
+     return sum;
+}
+function secondDiagonal(sum,i,j,mat){
+    while(i<mat.length && j>=0){
+        if(i!==j){
+        sum += mat[i][j];
+        }
+        i++;
+        j--;
+    }
+    // console.log(sum);
+    return sum;
+}
