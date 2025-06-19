@@ -1,0 +1,30 @@
+function rotateArray(n,k,nums)
+{
+    // let res=[];
+    //7-3=4 4 5 6 7
+    // loop i=0,i<n-1 1)i<k nums[N+i-k]=>nums[7+0-3]=4,5,6, else i>=k nums[i-k]=nums[3-3]=0 nums[4-3] nums[1] nums[5-3] nums[2]
+    // k=k%n; //k=3%7=3
+    // for(let i=0;i<n;i++){
+    //     if(i<k){
+    //         res.push(nums[n+i-k]);
+    //     }else{
+    //         res.push(nums[i-k]);
+    //     }
+    // }
+    // return res;
+    //tc-O(n) sc-O(n)
+
+    k=k%n;
+    reverse(nums,0,n-1);
+    reverse(nums,0,k-1);
+    reverse(nums,k,n-1);
+    return nums;
+    //tc-O(n) sc-O(1)
+}
+function reverse(arr,start,end){
+    while(start<end){
+        [arr[start],arr[end]]=[arr[end],arr[start]];
+        start++;
+        end--;
+    }
+}
