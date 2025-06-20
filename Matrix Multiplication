@@ -1,0 +1,12 @@
+function matrixMultiplication(n1,m1,n2,m2,grid1,grid2) {
+    //implement this function
+    let res=Array.from({length:n1},()=>Array(m2).fill(0));
+    for(let i=0;i<n1;i++){
+        for(let j=0;j<m2;j++){
+            for(let k=0;k<m1;k++){
+                res[i][j]+=grid1[i][k]*grid2[k][j];
+            }
+        }
+    }
+    return res;
+}
