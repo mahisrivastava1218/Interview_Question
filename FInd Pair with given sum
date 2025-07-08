@@ -1,0 +1,12 @@
+function twoSum(nums, target) {
+    const map=new Map();
+    for(let i=0;i<nums.length;i++){
+        const leftTarget = target-nums[i];
+        if(map.has(leftTarget)){
+           return [map.get(leftTarget),i];
+        }else{
+            map.set(nums[i],i);
+        }
+    }
+}
+//TC:O(n) sc:O(n)
