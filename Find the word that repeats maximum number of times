@@ -1,0 +1,35 @@
+
+function maxRepeatingWord(N, arr) {
+    //implement this function
+    // arr.sort();
+    // const map=new Map();
+    // for(let i=0;i<N;i++){
+    //     map.set(arr[i],(map.get(arr[i])+1)|| 1);
+    // }
+    // let max=1;
+    // let char=arr[0];
+    // for(let [key,val] of map){
+    //     if(val>max){
+    //         max = val;
+    //         char=key;
+    //     }
+    // }
+    // return char;
+    //TC:O(nlogn+n+u)->O(nlogn)
+    //SC:O(n)
+    const map=new Map();
+    let maxCount=0;
+    let char="";
+    for(let i=0;i<N;i++){
+        const word=arr[i];
+        const count = (map.get(word)||0)+ 1;
+        map.set(word,count);
+        if(count>maxCount || (count===maxCount && word < char)){
+            maxCount=count;
+            char=word;
+        }
+    }
+    return char;
+    //TC:O(n)
+    //SC:O(n)
+}
