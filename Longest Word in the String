@@ -1,0 +1,39 @@
+
+function longestWord(str) {
+    // const arr= str.split(' ');
+    // let max= arr[0].length;
+    // let char=arr[0];
+    // for(let i=0;i<arr.length;i++){
+    //   if(arr[i].length>max){
+    //       max= arr[i].length;
+    //       char = arr[i];
+    //   }
+    // }
+    // return char;
+//TC:O(n) sc:O(n)
+
+    //2approach
+    let i=0;
+    let j=0;
+    let startIndex=0;
+    let endIndex=0;
+    let maxLength=0;
+    while(j<=str.length){
+        if(j<str.length && str[j]!==" "){
+            j++;
+        }else{
+            const totalLength = j-i;
+            if(totalLength>maxLength){
+                maxLength=totalLength;
+                startIndex = i;
+                endIndex = j;
+            }
+            j++;
+            i=j;
+        }
+    }
+    // console.log(startIndex,endIndex);
+    // return str.slice(startIndex,endIndex);
+    return str.slice(startIndex,startIndex+maxLength);
+    //TC:O(n) SC:O(m)->longest word length
+}
