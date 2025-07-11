@@ -1,0 +1,48 @@
+function longestCommonPrefix(strs) {
+//    let n=strs.length;
+//    const map=new Map();
+//    for(let i=0;i<strs.length;i++){
+//        let freqStr="";
+//        for(let j=0;j<strs[0].length;j++){
+//            freqStr += strs[i][j]
+//           map.set(freqStr,(map.get(freqStr)||0)+1);
+//        }
+//    }
+// //    console.log(map);
+//    let newstr="";
+//    for(let [key,val] of map){
+//        if(val === strs.length && key.length > newstr.length){
+//            newstr = key;
+//        }
+//    }
+//    return newstr;
+//    TC:O(n*l^2)=> it's taking memory like 'f,'fl','flo'
+// perform l^2 operation
+//sc->O(n*l^2)=> it's storing 'f','fl','flo','flow' in worst case perform l*(l^2+1)/2->l^2
+
+// optimize
+// tcc-O(n*l) sc=O(1)
+// for(let i=0;i<strs[0].length;i++){
+//     const set = new Set();
+//     for(let j=0;j<strs.length;j++){
+//         set.add(strs[j][i]);
+//         if(set.size>1){
+//             return strs[0].substring(0,i);
+//         }
+//     }
+// }
+// return strs[0];
+
+// more clear
+// edge case will be if someone has minimum length other than strs[0]
+// we just compare every string to strs[0]
+// tc-O(n*l) sc-O(1)
+for(let i=0;i<strs[0].length;i++){
+    for(let j=1;j<strs.length;j++){
+        if(strs[j].length <=i || strs[j][i]!==strs[0][i]){
+            return strs[0].substring(0,i);
+        }
+    }
+}
+return strs[0];
+}
