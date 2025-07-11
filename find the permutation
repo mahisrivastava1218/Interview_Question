@@ -1,0 +1,23 @@
+function permutation(nums) {
+    const n = nums.length;
+    const res = [];
+
+    if (n === 1) {
+        return [[nums[0]]];
+    }
+
+    for (let i = 0; i < n; i++) {
+        const rem = [];
+        for (let j = 0; j < n; j++) {
+            if (i === j) continue;
+            rem.push(nums[j]);
+        }
+
+        const temp = permutation(rem);
+        for (const p of temp) {
+            res.push([...p, nums[i]]);
+        }
+    }
+
+    return res;
+}
