@@ -1,0 +1,18 @@
+function moreThanOnceDSAUNIQ(str) {
+    const map=new Map();
+    for(let i=0;i<str.length;i++){
+      map.set(str[i],(map.get(str[i])||0)+1);
+    }
+    // console.log(map);
+    let ans=[];
+    for(let [key,val] of map){
+        if(val>1){
+        // console.log(key,val);
+           ans.push([key,val]);
+        }
+    }
+    ans.sort();//lexicographically sorted
+    for(let i=0;i<ans.length;i++){
+        console.log(ans[i][0],ans[i][1]);
+    }
+}
