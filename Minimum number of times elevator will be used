@@ -1,1 +1,19 @@
 //Minimum number of times elevator will be used
+function elevator(N,K,W) {
+    W.sort((a,b)=>b-a);
+    let count=0;
+    let i=0;
+    let j=N-1;
+    while(i<=j){
+        if(W[j]+W[i]<= K){
+          i++;
+          j--;
+        }else{
+         i++;
+        }
+        count++;
+    }
+    return count;
+}
+TC:O(nlogn)
+SC:O(1)
