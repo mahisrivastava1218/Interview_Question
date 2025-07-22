@@ -1,0 +1,16 @@
+//when hcf is 1 then it's called coprime
+// Euclidean algorithm
+function gcd(n1,n2){
+    if(n2 == 0) return n1; 
+    return gcd(n2, n1%n2); //TC & SC - O(log(min(n1,n2))) - O(log(n))
+  }
+  function coprimeNumbers(n){
+    let count =0; //O(1)
+    for(let i=0;i<n;i++){ //TC - O(N)
+    if(gcd(n,i) == 1){  //TC - O(log N)
+        count = count +1; 
+    }
+    }
+   return count;
+  }
+  //TC - O(log(n)*n ) //SC - O(log(n)) 
