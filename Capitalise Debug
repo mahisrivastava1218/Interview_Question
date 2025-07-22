@@ -1,0 +1,15 @@
+function main() {
+  let str = readLine();
+  let result = "";
+  for (let i = 0; i < str.length; i++) {
+    let charCode = str.charCodeAt(i);
+     
+
+     if (charCode >= 97 && charCode <= 122) {
+      charCode -= 32;
+    }
+    let capitalizedChar = String.fromCharCode(charCode);
+    result += capitalizedChar;
+  }
+  console.log(result);
+}
