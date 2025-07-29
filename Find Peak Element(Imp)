@@ -21,3 +21,4 @@ var findPeakElement = function(nums) {
    }
    return -1;
 };
+//TC:O(logn)
