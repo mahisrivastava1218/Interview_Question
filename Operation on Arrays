@@ -1,0 +1,20 @@
+// function removeListedValues(arr, without) {
+//       let newarr=[];
+//       for(let i=0;i<arr.length;i++){
+//             if(!without.includes(arr[i])){
+//                   newarr.push(arr[i]);
+//             }
+//       }
+//       return newarr;
+// }
+//tc-O(n*m) SC-O(n)
+function removeListedValues(arr, without) {
+  let withoutSet = new Set(without); // O(m)
+  for (let i =arr.length-1; i >= 0;i--) {
+    if (withoutSet.has(arr[i])) { // O(1) lookup
+      arr.splice(i,1);
+    }
+  }
+  return arr;
+  //tc-O(n+m) SC-O(m)
+}
